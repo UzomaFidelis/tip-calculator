@@ -264,6 +264,10 @@ body {
   }
 }
 
+.error, .error:hover, .error:focus {
+  border: 2px solid vars.$warning-red;
+}
+
 @media (min-width: 1000px) {
   body {
     display: flex;

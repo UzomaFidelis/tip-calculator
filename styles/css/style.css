@@ -248,6 +248,10 @@ body {
   background-color: hsl(172, 67%, 25%);
 }
 
+.error, .error:hover, .error:focus {
+  border: 2px solid hsl(0, 100%, 70%);
+}
+
 @media (min-width: 1000px) {
   body {
     display: flex;

@@ -31,11 +31,12 @@ const validateInput = (elem, formInputFeedback) => {
   if (elem.target.value && elem.target.value == 0) {
     formInputFeedback.style.display = "block";
     formInputFeedback.setAttribute('aria-hidden', 'false');
-    elem.target.style.border = "2px solid hsl(0, 100%, 70%)";
+    elem.target.classList.add('error');
+    console.log('added error class');
   } else {
     formInputFeedback.style.display = "none";
     formInputFeedback.setAttribute('aria-hidden', 'true')
-    elem.target.style.border = "none";
+    elem.target.classList.remove('error');
   }
 };
 
