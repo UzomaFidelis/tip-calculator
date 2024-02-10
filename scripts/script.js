@@ -48,6 +48,8 @@ const readyToCalculate = () => {
     tipChosen()
   ) {
     return true;
+  } else {
+    return false;
   }
 };
 
