@@ -30,9 +30,11 @@ const tipChosen = () => {
 const validateInput = (elem, formInputFeedback) => {
   if (elem.target.value && elem.target.value == 0) {
     formInputFeedback.style.display = "block";
+    formInputFeedback.setAttribute('aria-hidden', 'false');
     elem.target.style.border = "2px solid hsl(0, 100%, 70%)";
   } else {
     formInputFeedback.style.display = "none";
+    formInputFeedback.setAttribute('aria-hidden', 'true')
     elem.target.style.border = "none";
   }
 };
