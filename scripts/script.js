@@ -86,6 +86,7 @@ const reset = () => {
   customTip.value = "";
   tipPerPerson.textContent = "$0.00";
   totalPerPerson.textContent = "$0.00";
+  resetBtn.disabled = true;
 };
 
 // Add event listeners
