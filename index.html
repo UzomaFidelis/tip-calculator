@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./styles/css/style.css" />
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body>
+    <div class="tip-calculator">
+      <header class="head">
+        <img src="./images/logo.svg" alt="logo" class="head__logo" />
+      </header>
+
+      <main class="calculator">
+        <h1 class="sr-only">Tip Calculator</h1>
+
+        <section class="calculator__input">
+          <form action="">
+            <label for="bill" class="bill__label">Bill</label>
+
+            <div class="bill__wrapper">
+              <input
+                type="number"
+                name="bill"
+                id="bill"
+                class="bill numinput numinput_lg"
+                placeholder="0"
+                min="0"
+                step="0.01"
+              />
+            </div>
+
+            <fieldset class="tip-set">
+              <legend class="tip-set__legend">Select Tip %</legend>
+              <div class="tip-inputs">
+                <input
+                  type="radio"
+                  id="radio-5percent"
+                  class="tip-set__radio"
+                  name="tip"
+                  value="5"
+                />
+                <label
+                  for="radio-5percent"
+                  class="tip-set__label tip-set__option"
+                  >5%</label
+                >
+
+                <input
+                  type="radio"
+                  id="radio-10percent"
+                  class="tip-set__radio"
+                  name="tip"
+                  value="10"
+                />
+                <label
+                  for="radio-10percent"
+                  class="tip-set__label tip-set__option"
+                  >10%</label
+                >
+
+                <input
+                  type="radio"
+                  id="radio-15percent"
+                  class="tip-set__radio"
+                  name="tip"
+                  value="15"
+                />
+                <label
+                  for="radio-15percent"
+                  class="tip-set__label tip-set__option"
+                  >15%</label
+                >
+
+                <input
+                  type="radio"
+                  id="radio-25percent"
+                  class="tip-set__radio"
+                  name="tip"
+                  value="25"
+                />
+                <label
+                  for="radio-25percent"
+                  class="tip-set__label tip-set__option"
+                  >25%</label
+                >
+
+                <input
+                  type="radio"
+                  id="radio-50percent"
+                  class="tip-set__radio"
+                  name="tip"
+                  value="50"
+                />
+                <label
+                  for="radio-50percent"
+                  class="tip-set__label tip-set__option"
+                  >50%</label
+                >
+
+                <input
+                  type="number"
+                  id="custom"
+                  class="tip-set__option numinput tip-set__numinput"
+                  placeholder="Custom"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+            </fieldset>
+
+            <span class="label-and-feedback">
+              <label for="num-of-persons" class="num-of-persons__label"
+                >Number of People</label
+              >
+              <span class="feedback num-of-persons__feedback"
+                >Can't be zero</span
+              >
+            </span>
+            <div class="num-of-persons__wrapper">
+              <input
+                type="number"
+                name="persons"
+                id="num-of-persons"
+                class="num-of-persons numinput numinput_lg"
+                placeholder="0"
+                min="0"
+                step="1"
+              />
+            </div>
+          </form>
+        </section>
+        <section class="calculator__output">
+          <div class="result">
+            <div class="result__container">
+              <div class="caption">
+                <p class="result__caption">
+                  Tip Amount <span class="per-person">/ person</span>
+                </p>
+              </div>
+              <div id="tip-per-person" class="tip-per-person result__amount">
+                $0.00
+              </div>
+            </div>
+            <div class="result__container">
+              <div class="caption">
+                <p class="result__caption">
+                  Total <span class="per-person">/ person</span>
+                </p>
+              </div>
+              <div
+                id="total-per-person"
+                class="total-per-person result__amount"
+              >
+                $0.00
+              </div>
+            </div>
+            <button type="button" class="reset" disabled>Reset</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+@use "variables" as vars;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  src: url(../../fonts/SpaceMono-Bold.ttf);
+  font-weight: 700;
+}
+
+@mixin numinput-style($lg-or-sm: "lg") {
+  border: none;
+  background-color: vars.$very-light-grayish-cyan;
+  text-align: right;
+  font-family: "Space Mono", sans-serif;
+  font-weight: 700;
+  color: vars.$very-dark-cyan;
+  font-size: 1.5rem;
+
+  @if $lg-or-sm == "lg" {
+    padding: 0.2rem 1rem 0.2rem 2rem;
+  } @else if $lg-or-sm == "sm" {
+    padding: 0.2rem 1rem 0.2rem 0.2rem;
+  }
+
+  &:hover {
+    border: 2px solid vars.$grayish-cyan;
+  }
+
+  &:focus {
+    outline: none !important;
+    border: 2px solid vars.$strong-cyan;
+  }
+
+  &::placeholder {
+    color: vars.$grayish-cyan;
+  }
+}
+
+@mixin numinput-icon($icon-path) {
+  &__wrapper {
+    margin: 0.48rem 0;
+    position: relative;
+    line-height: 0;
+
+    &::before {
+      content: "";
+      background: {
+        image: $icon-path;
+        repeat: no-repeat;
+        position: center;
+        size: contain;
+      }
+      width: 0.9rem;
+      height: 1.08rem;
+      position: absolute;
+      left: 1.07rem;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  }
+}
+
+@mixin font {
+  font-family: "Space Mono", sans-serif;
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  background-color: vars.$light-grayish-cyan;
+  @include font;
+}
+
+.tip-calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0 0;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+  margin: 1.1rem 0 2.5rem;
+}
+
+.calculator {
+  background-color: vars.$white;
+  border-radius: 1.5rem 1.5rem 0 0;
+  overflow: hidden;
+  color: vars.$dark-grayish-cyan;
+
+  &__input {
+    padding: 2rem 2.05rem 1.55rem 2rem;
+  }
+
+  &__output {
+    padding: 0 1.5rem 1.981rem;
+  }
+}
+
+.numinput {
+  &_lg {
+    @include numinput-style();
+    width: 100%;
+    height: 2.9rem;
+    border-radius: 8px;
+  }
+}
+
+.bill {
+  @include numinput-icon(url(../../images/icon-dollar.svg));
+
+  &__label {
+    display: block;
+  }
+  &__feedback {
+    display: none;
+  }
+}
+
+.tip {
+  &-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 3rem);
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  &-set {
+    $base: &;
+    border: none;
+    padding: 0;
+    margin: 2rem 0 1rem;
+
+    &__legend {
+      padding: 0;
+    }
+
+    &__option {
+      border-radius: 5px;
+    }
+
+    &__radio {
+      display: none;
+
+      &:checked + #{$base}__label {
+        background-color: vars.$strong-cyan;
+        color: vars.$very-dark-cyan;
+      }
+    }
+
+    &__label {
+      display: inline-flex;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      background-color: vars.$very-dark-cyan;
+      color: vars.$white;
+      font-size: 1.5rem;
+
+      &:hover {
+        background-color: vars.$stronger-cyan;
+      }
+    }
+
+    &__numinput {
+      @include numinput-style("sm");
+    }
+  }
+}
+
+.num-of-persons {
+  @include numinput-icon(url(../../images/icon-person.svg));
+
+  &__feedback {
+    display: none;
+  }
+}
+
+.feedback {
+  color: vars.$warning-red;
+}
+
+.label-and-feedback {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result {
+  background-color: vars.$very-dark-cyan;
+  padding: 1.9rem 1.35rem 1.5rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &__caption {
+    color: vars.$white;
+    margin: 0.5rem 0;
+  }
+
+  &__amount {
+    color: vars.$strong-cyan;
+    font-size: 1.95rem;
+    text-align: right;
+    overflow-x: scroll;
+  }
+}
+
+.per-person {
+  display: block;
+  color: vars.$grayish-cyan;
+  font-size: 0.8rem;
+}
+
+.caption {
+  position: relative;
+  top: 0.4rem;
+}
+
+.reset {
+  @include font;
+  align-self: center;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  background-color: vars.$strong-cyan;
+  color: vars.$very-dark-cyan;
+  margin-top: 1.1rem;
+  width: 100%;
+  height: 3rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: vars.$stronger-cyan;
+  }
+
+  &:disabled {
+    background-color: vars.$weak-cyan;
+  }
+}
+
+@media (min-width: 1000px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .head {
+    margin: 0 0 5.5rem;
+  }
+
+  .tip-calculator {
+    padding: 0 0 4.7rem;
+    margin: 2rem;
+  }
+
+  .calculator {
+    max-width: 57.5rem;
+    display: flex;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 15px 30px 5px rgba(vars.$grayish-cyan,0.3);
+
+    &:hover {
+      box-shadow: 0 15px 30px 5px rgba(vars.$grayish-cyan,0.5);
+    }
+
+    &__input {
+      flex: 0 0 48%;
+      padding: 0.81rem 0.99rem 0.5rem;
+    }
+
+    &__output {
+      flex: 0 0 52%;
+      padding: 0 0 0 2rem;
+      align-self: stretch;
+      height: 100%;
+    }
+  }
+
+  .tip {
+    &-set {
+      margin: 2.5rem 0 1.5rem;
+
+      &__numinput {
+        padding-left: 0.2rem;
+      }
+    }
+
+    &-inputs {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, 3rem);
+    }
+  }
+
+  .result {
+    padding: 2.62rem 2.5rem 2.58rem 2.5rem;
+    gap: 1.7rem;
+
+    &__amount {
+      font-size: 2.9rem;
+    }
+  }
+
+  .reset {
+    margin-top: 5.9rem;
+  }
+}
