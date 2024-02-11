@@ -114,7 +114,10 @@ customTip.addEventListener("input", (e) => {
 });
 
 radiosArray.forEach((radio) => {
-  radio.addEventListener("click", calculate);
+  radio.addEventListener("click", () => {
+    customTip.value = '';
+    calculate();
+  });
 });
 
 resetBtn.addEventListener("click", reset);
